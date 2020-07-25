@@ -8,21 +8,21 @@
 /*
  105. 从前序与中序遍历序列构造二叉树
  根据一棵树的前序遍历与中序遍历构造二叉树。
-
+ 
  注意:
  你可以假设树中没有重复的元素。
-
+ 
  例如，给出
-
+ 
  前序遍历 preorder = [3,9,20,15,7]
  中序遍历 inorder = [9,3,15,20,7]
  返回如下的二叉树：
-
-     3
-    / \
-   9  20
-     /  \
-    15   7
+ 
+ 3
+ / \
+ 9  20
+ /  \
+ 15   7
  */
 import Foundation
 
@@ -38,7 +38,7 @@ class TreeFromPreInOrder {
         for i in 0 ..< inorder.count {
             indexMap[inorder[i]] = i
         }
-
+        
         // preorder 根左右
         // inorder 左根右
         let n = inorder.count
@@ -68,18 +68,19 @@ class TreeFromPreInOrder {
         node.left = buildTreeRecursive(preorder,
                                        inorder,
                                        preIndexStart + 1,
-                                       preIndexStart + sizeLeftTree, // ->  preIndexStart > preIndexEnd
-                                       inorderStart,
-                                       rootIndex - 1, // ->  sizeLeftTree = rootIndex - inorderStart
-                                       indexMap)
+                                       preIndexStart + sizeLeftTree, // preIndexStart + 1 与preIndexStart + sizeLeftTree, 限制前序数组的遍历范围，保证是左子树的取值 （preIndexStart > preIndexEnd）
+                                      inorderStart,
+                                      inorderIndex - 1, // ->  sizeLeftTree = rootIndex - inorderStart
+                                      indexMap)
         
         node.right = buildTreeRecursive(preorder,
                                         inorder,
                                         preIndexStart + sizeLeftTree + 1,
-                                        preIndexEnd, // ->  preIndexStart > preIndexEnd
-                                        rootIndex + 1,
+                                        preIndexEnd, // preIndexStart + sizeLeftTree + 1 与preIndexEnd, 限制前序数组的遍历范围，保证是右子树的取值 （ preIndexStart > preIndexEnd）
+                                        inorderIndex + 1,
                                         inorderEnd, // ->  sizeLeftTree = rootIndex - inorderStart
                                         indexMap)
+        
         
         
         return node
