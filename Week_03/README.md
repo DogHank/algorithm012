@@ -4,7 +4,7 @@
 
 ![](https://github.com/DogHank/algorithm012/blob/master/Week_03/backtracing.png)
 
-第0轮展示了生成[1,2,3] [1,3,2]这两个排列的过程，其他第1、2轮依些类推
+第0轮展示了生成[1,2,3] [1,3,2]这两个排列的过程，其他第1、2轮依此类推
 中间最重要的是记录当前number是否可用，代码实现如下：
 ```
 
