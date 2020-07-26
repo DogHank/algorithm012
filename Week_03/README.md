@@ -13,12 +13,11 @@
         var tempNums: [Int] = []
         // 用set记录number的状态（是否已用）
         var hashSet: Set<Int> = Set<Int>(minimumCapacity: nums.count)
-        permuteBacktracing(nums, 0, &hashSet, &tempNums, &results)
+        permuteBacktracing(nums, &hashSet, &tempNums, &results)
         return results
     }
 
     func permuteBacktracing(_ nums: [Int],
-                            _ depth: Int,
                             _ hashSet: inout Set<Int>,
                             _ tempNums: inout [Int],
                             _ results: inout [[Int]]) {
@@ -31,7 +30,7 @@
             if hashSet.contains(i) == false {
                 tempNums.append(nums[i])
                 hashSet.insert(i)
-                permuteBacktracing(nums, depth + 1, &hashSet, &tempNums, &results) // 开辟下一重循环
+                permuteBacktracing(nums,&hashSet, &tempNums, &results) // 开辟下一重循环
                 tempNums.removeLast()
                 hashSet.remove(i) // 状态恢复
             }
