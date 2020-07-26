@@ -30,12 +30,11 @@ class PermuteUnique {
         var hashSet: Set<Int> = Set<Int>(minimumCapacity: nums.count)
         var nums = nums
         nums.sort()
-        permuteUniqueBacktracing(nums, 0, &hashSet, &tempNums, &results)
+        permuteUniqueBacktracing(nums, &hashSet, &tempNums, &results)
         return results
     }
     
     func permuteUniqueBacktracing(_ nums: [Int],
-                                  _ depth: Int,
                                   _ hashSet: inout Set<Int>,
                                   _ tempNums: inout [Int],
                                   _ results: inout [[Int]] ) {
@@ -54,7 +53,7 @@ class PermuteUnique {
             if hashSet.contains(i) == false {
                 tempNums.append(nums[i])
                 hashSet.insert(i)
-                permuteUniqueBacktracing(nums, depth + 1, &hashSet, &tempNums, &results)
+                permuteUniqueBacktracing(nums, &hashSet, &tempNums, &results)
                 tempNums.removeLast()
                 hashSet.remove(i)
             }
