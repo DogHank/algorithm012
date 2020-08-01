@@ -36,7 +36,7 @@ class SearchRevertSortedArray {
         if n == 1 { return target == nums[0] ? 0 : -1 }
         var l = 0, r = n - 1
         while l <= r {
-            let mid = (l + r) / 2
+            let mid = l + (r - l) / 2
             if nums[mid] == target { return mid }
             if nums[0] <= nums[mid] {
                 if nums[0] <= target && target < nums[mid] {
